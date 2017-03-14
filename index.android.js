@@ -9,6 +9,7 @@ import {
   AppRegistry
 } from 'react-native';
 
-import ForceUpgrade from './cases/ForceUpgrade'
+// import APP from './cases/Hello'
+import APP from './cases/ForceUpgrade'
 
-AppRegistry.registerComponent('TestAlivePush', () => ForceUpgrade);
+AppRegistry.registerComponent('TestAlivePush', () => APP);
