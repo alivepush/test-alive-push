@@ -77,13 +77,12 @@ class App extends Component {
 
 	render() {
 		return (
-			<View style={{flexDirection: 'column', alignItems: 'center', flex: 1, justifyContent: 'center'}}>
-				<Text>检查到有更新能够正确下载,重启之后能够使用更新包进行安装</Text>
-
-				<Text>progress:{this.state.progress}</Text>
-				<Text>error:{this.state.err}</Text>
+			<View style={{flexDirection: 'column', flex: 1}}>
+				<Text>当前进度:{this.state.progress}</Text>
+				<Text>错误消息:{this.state.err}</Text>
+				<Text>状态变化:</Text>
 				{this.state.status.map((item, index) => {
-					return <Text key={index}>status:{item.text}:{item.value}</Text>
+					return <Text style={{marginLeft: 20}} key={index}>{item.text} : {item.value}</Text>
 				})}
 			</View>
 		);

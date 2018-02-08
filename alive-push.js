@@ -115,6 +115,7 @@ let alivePush = (options: AlivePushOption) => {
 
 			async buildHeaders(appInfo: ?APPInfo): Object {
 				let app = await this.getAppInfo(appInfo);
+				console.log(`app info`, appInfo);
 				let headers = {
 					device: this.deviceInfo.toBase64Sync(),
 					'Content-Type': 'application/json',
