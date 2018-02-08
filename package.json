@@ -4,21 +4,22 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
-    "build:android": "cd android && ./gradlew assembleRelease",
-    "install:android": "cd android && ./gradlew assembleRelease && adb install app/build/outputs/apk/app-release.apk"
+    "test": "jest"
   },
   "dependencies": {
-    "react": "15.4.2",
-    "react-native": "0.42.0",
-    "react-native-alive-push": "file:///Users/yzw/alive-push"
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.0",
+    "react-native-alive-push": "file:///Users/jean.h.ma/Documents/github/alive-push",
+    "react-native-device-info": "^0.9.9",
+    "react-native-fetch-blob": "^0.10.8",
+    "react-native-zip-archive": "^1.1.1"
   },
   "devDependencies": {
-    "babel-jest": "19.0.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-react-native": "1.9.1",
-    "jest": "19.0.2",
-    "react-test-renderer": "15.4.2"
+    "babel-jest": "22.2.0",
+    "babel-plugin-transform-remove-console": "^6.9.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.2.1",
+    "react-test-renderer": "16.0.0-alpha.6"
   },
   "jest": {
     "preset": "react-native"

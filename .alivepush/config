@@ -1,0 +1,6 @@
+[server]
+url=http://172.16.30.236:8080/
+
+[user]
+username=yk
+token=74533907dc42a6c5a4e87343a76ac023583ec592e573240ec2

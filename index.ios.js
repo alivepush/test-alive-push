@@ -12,6 +12,6 @@ import {
   View
 } from 'react-native';
 
-import APP from './cases/ForceUpgrade.ios'
+import App from './App'
 
-AppRegistry.registerComponent('TestAlivePush', () => APP);
+AppRegistry.registerComponent('TestAlivePush', () => App);

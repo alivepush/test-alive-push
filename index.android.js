@@ -4,12 +4,15 @@
  * @flow
  */
 
-import React from 'react';
+import React, {Component} from 'react';
 import {
-  AppRegistry
+	AppRegistry,
+	StyleSheet,
+	Text,
+	View
 } from 'react-native';
 
-// import APP from './cases/Hello'
-import APP from './cases/ForceUpgrade.android'
+import App from './App'
 
-AppRegistry.registerComponent('TestAlivePush', () => APP);
+
+AppRegistry.registerComponent('TestAlivePush', () => App);
