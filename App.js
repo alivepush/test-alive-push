@@ -1,58 +1,80 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Created by jean.h.ma on 3/14/17.
  */
-
-import React, { Component } from 'react';
+import React, {Component} from 'react'
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+	View,
+	Text,
+	Alert
+} from 'react-native'
+import alivePush, {AlivePushStatus} from 'react-native-alive-push'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			status: null,
+			err: "",
+			progress: ""
+		}
+	}
+
+	alivePushStatusChange(status, restart) {
+		this.setState(Object.assign({}, this.state, {
+			status
+		}));
+		if (status === AlivePushStatus.afterDownload && restart) {
+			Alert.alert(
+				'更新',
+				'更新包已下载好,请重启进行更新!',
+				[
+					{
+						text: '确定', onPress: () => {
+							restart();
+						}
+					}
+				],
+				{cancelable: false}
+			);
+		}
+	}
+
+	alivePushDownloadProgress(received, total) {
+		this.setState(Object.assign({}, this.state, {
+			progress: received / total
+		}));
+	}
+
+	alivePushError(err) {
+		this.setState(Object.assign({}, this.state, {
+			err: err.toString()
+		}));
+	}
+
+	getStatusText(value) {
+		const kv = Object.keys(AlivePushStatus).map(k => {
+			return {
+				key: k,
+				value: AlivePushStatus[k]
+			};
+		});
+		return kv.find(f => f.value === value).key;
+	}
+
+	render() {
+		return (
+			<View style={{flexDirection: 'column', alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+				<Text>检查到有更新能够正确下载,重启之后能够使用更新包进行安装</Text>
+				<Text>status:{this.state.status}</Text>
+				<Text>progress:{this.state.progress}</Text>
+				<Text>error:{this.state.err}</Text>
+			</View>
+		);
+	}
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default alivePush({
+	deploymentKey: "b1ca9e0955b8d48ded51549586c066ff",
+	host: "http://172.16.30.236:8080/"
+})(App);
