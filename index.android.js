@@ -10,6 +10,6 @@ import {
 } from 'react-native';
 
 // import APP from './cases/Hello'
-import APP from './cases/ForceUpgrade.android'
+import APP from './cases/ForceUpgrade'
 
 AppRegistry.registerComponent('TestAlivePush', () => APP);
