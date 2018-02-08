@@ -10,8 +10,8 @@ import {
 import alivePush,{AlivePushStatus} from 'react-native-alive-push'
 
 @alivePush({
-	deploymentKey:"2a2b1bbefc9450b556c034dd86fd3ab2",
-	host:"http://172.16.30.87:8080/"
+	deploymentKey:"b1ca9e0955b8d48ded51549586c066ff",
+	host:"http://172.16.30.236:8080/"
 })
 export default class ForceUpgrade extends Component {
 	constructor(props){
@@ -54,9 +54,9 @@ export default class ForceUpgrade extends Component {
 		return (
 			<View style={{flexDirection:'column',alignItems:'center',flex:1,justifyContent:'center'}}>
 				<Text>检查到有更新能够正确下载,重启之后能够使用更新包进行安装</Text>
-				<Text>{this.state.status}</Text>
-				<Text>{this.state.progress}</Text>
-				<Text>{this.state.err}</Text>
+				<Text>status:{this.state.status}</Text>
+				<Text>progress:{this.state.progress}</Text>
+				<Text>error:{this.state.err}</Text>
 			</View>
 		);
 	}
