@@ -64,17 +64,19 @@ class App extends Component {
 	}
 
 	alivePushDownloadProgress(received, total) {
+        debugger
 		this.setState(Object.assign({}, this.state, {
 			progress: received / total
 		}));
 	}
 
 	alivePushError(err) {
+        debugger
 		this.setState(Object.assign({}, this.state, {
 			err: err.toString()
 		}));
 	}
-
+    
 	render() {
 		return (
 			<View style={{flexDirection: 'column', flex: 1}}>
