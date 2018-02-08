@@ -76,7 +76,7 @@ class App extends Component {
 			err: err.toString()
 		}));
 	}
-    
+
 	render() {
 		return (
 			<View style={{flexDirection: 'column', flex: 1}}>
