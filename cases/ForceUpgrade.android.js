@@ -10,8 +10,8 @@ import {
 import alivePush,{AlivePushStatus} from 'react-native-alive-push'
 
 @alivePush({
-	deploymentKey:"2a2b1bbefc9450b556c034dd86fd3ab2",
-	host:"http://172.16.30.87:8080/"
+	deploymentKey:"b1ca9e0955b8d48ded51549586c066ff",
+	host:"http://172.16.30.236:8080/"
 })
 export default class ForceUpgrade extends Component {
 	constructor(props){
