@@ -8,10 +8,9 @@ import {
 	Alert,
 	NativeModules
 } from 'react-native'
-import alivePush, {AlivePushStatus} from 'react-native-alive-push'
+import alivePush, {AlivePushStatus} from './alive-push'
 
 const {RNAlivePush} = NativeModules;
-
 
 class App extends Component {
 	constructor(props) {
