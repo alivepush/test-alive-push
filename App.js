@@ -6,9 +6,10 @@ import {
 	View,
 	Text,
 	Alert,
-	NativeModules
+	NativeModules,
+	Image
 } from 'react-native'
-import alivePush, {AlivePushStatus} from './alive-push'
+import alivePush, {AlivePushStatus} from 'react-native-alive-push'
 
 const {RNAlivePush} = NativeModules;
 
@@ -38,27 +39,26 @@ class App extends Component {
 	}
 
 	alivePushStatusChange(status, packageInfo) {
-		console.log(packageInfo)
 		let newState = Object.assign({}, this.state);
 		newState.status.push({
 			text: this.getStatusText(status),
 			value: status
 		});
 		this.setState(newState, () => {
-			if (status === AlivePushStatus.afterDownload) {
-				Alert.alert(
-					'更新',
-					'更新包已下载好,请重启进行更新!',
-					[
-						{
-							text: '确定', onPress: () => {
-								RNAlivePush.restart();
-							}
-						}
-					],
-					{cancelable: false}
-				);
-			}
+			// if (status === AlivePushStatus.afterDownload) {
+			// 	Alert.alert(
+			// 		'更新',
+			// 		'更新包已下载好,请重启进行更新!',
+			// 		[
+			// 			{
+			// 				text: '确定', onPress: () => {
+			// 					RNAlivePush.restart();
+			// 				}
+			// 			}
+			// 		],
+			// 		{cancelable: false}
+			// 	);
+			// }
 		});
 
 	}
@@ -80,11 +80,13 @@ class App extends Component {
 	render() {
 		return (
 			<View style={{flexDirection: 'column', flex: 1}}>
+				<Image style={{width: 50, height: 50}} source={require('./assets/1.jpg')}/>
 				<Text>当前进度:{this.state.progress}</Text>
 				<Text>错误消息:{this.state.err}</Text>
 				<Text>状态变化:</Text>
 				{this.state.status.map((item, index) => {
-					return <Text style={{marginLeft: 20}} key={index}>{item.text} : {item.value}</Text>
+					return <Text style={{marginLeft: 20}}
+								 key={index}>{item.text} : {item.value}</Text>
 				})}
 			</View>
 		);
@@ -92,6 +94,6 @@ class App extends Component {
 }
 
 export default alivePush({
-	deploymentKey: "b1ca9e0955b8d48ded51549586c066ff",
+	deploymentKey: "1229e43400d972b7349c5f7932718f9c",
 	host: "http://172.16.30.236:8080/"
 })(App);

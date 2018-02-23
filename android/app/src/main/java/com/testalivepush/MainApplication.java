@@ -13,6 +13,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,6 +33,16 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         protected String getJSBundleFile() {
             return RNAlivePushModule.getJSBundleFile(MainApplication.this);
+        }
+
+        @Nullable
+        @Override
+        protected String getBundleAssetName() {
+            String bundleAssetName = RNAlivePushModule.getBundleAssetName(MainApplication.this);
+            if (bundleAssetName != null) {
+                return bundleAssetName;
+            }
+            return super.getBundleAssetName();
         }
 
         @Override

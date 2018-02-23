@@ -234,11 +234,13 @@ let alivePush = (options: AlivePushOption) => {
 						});
 						let packagePath = newPackage.path();
 						//解压安装包
-						let unzipPath = await this.unzipPackage(packagePath, packageInfo.data.inner);
-						let bundlePath = `${unzipPath}/app/index.${Platform.OS}.js`;
+						const unzipPath = await this.unzipPackage(packagePath, packageInfo.data.inner);
+						const bundlePath = `${unzipPath}/app/index.${Platform.OS}.js`;
+						const assetPath = `${unzipPath}/app`;
 						//更新alive push的配置文件
 						await this.updateConfig({
 							path: bundlePath,
+							assetPath: assetPath,
 							lastUpdateTime: new Date(),
 							install: false,
 							version: packageInfo.data.inner
