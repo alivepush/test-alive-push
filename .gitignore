@@ -53,3 +53,7 @@ ios/Index
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+# alivepush
+.alivepush
+alive_dist
