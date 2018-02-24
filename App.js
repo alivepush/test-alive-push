@@ -80,6 +80,7 @@ class App extends Component {
 	render() {
 		return (
 			<View style={{flexDirection: 'column', flex: 1}}>
+				<Image width={50} height={50} source={require('./assets/1.png')}></Image>
 				<Text>当前进度:{this.state.progress}</Text>
 				<Text>错误消息:{this.state.err}</Text>
 				<Text>状态变化:</Text>
