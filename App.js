@@ -7,7 +7,8 @@ import {
 	Text,
 	Alert,
 	NativeModules,
-	Image
+	Image,
+	Platform
 } from 'react-native'
 import alivePush, {AlivePushStatus} from 'react-native-alive-push'
 
@@ -70,7 +71,7 @@ class App extends Component {
 	}
 
 	alivePushError(err) {
-        debugger
+		debugger
 		this.setState(Object.assign({}, this.state, {
 			err: err.toString()
 		}));
@@ -92,6 +93,6 @@ class App extends Component {
 }
 
 export default alivePush({
-	deploymentKey: "1229e43400d972b7349c5f7932718f9c",
+	deploymentKey: Platform.OS === "android" ? "1229e43400d972b7349c5f7932718f9c" : "b1ca9e0955b8d48ded51549586c066ff",
 	host: "http://172.16.30.236:8080/"
 })(App);
