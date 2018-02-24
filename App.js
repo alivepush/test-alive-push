@@ -64,7 +64,6 @@ class App extends Component {
 	}
 
 	alivePushDownloadProgress(received, total) {
-        debugger
 		this.setState(Object.assign({}, this.state, {
 			progress: received / total
 		}));
@@ -80,7 +79,6 @@ class App extends Component {
 	render() {
 		return (
 			<View style={{flexDirection: 'column', flex: 1}}>
-				<Image style={{width: 50, height: 50}} source={require('./assets/1.jpg')}/>
 				<Text>当前进度:{this.state.progress}</Text>
 				<Text>错误消息:{this.state.err}</Text>
 				<Text>状态变化:</Text>
