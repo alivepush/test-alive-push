@@ -1,99 +1,123 @@
 /**
  * Created by jean.h.ma on 3/14/17.
  */
-import React, {Component} from 'react'
+/**
+ * Created by yzw on 2018/5/31.
+ */
+
+import React, { Component } from 'react';
 import {
-    View,
+    AppRegistry,
+    StyleSheet,
     Text,
+    View,
     Alert,
-    NativeModules,
-    Image,
-    Platform
-} from 'react-native'
+    Image
+} from 'react-native';
 import alivePush, {AlivePushStatus} from 'react-native-alive-push'
 
-const {RNAlivePush} = NativeModules;
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            status: [],
-            err: "",
-            progress: ""
+            info:""
         }
-        this.status = Object.keys(AlivePushStatus).map(k => ({
-            key: k,
-            value: AlivePushStatus[k]
-        }));
     }
 
-    getStatusText(value) {
-        if (this.state.status) {
-            const status = this.status.find(f => f.value === value);
-            if (status) {
-                return status.key;
-            }
-            return '';
-        }
-        return '';
-    }
-
+    /**
+     * alive push 状态改变回调方法
+     * @param {AlivePushStatus} status - 状态
+     * @param {ResponseJSON} packageInfo - 更新包信息
+     * */
     alivePushStatusChange(status, packageInfo) {
-        let newState = Object.assign({}, this.state);
-        newState.status.push({
-            text: this.getStatusText(status),
-            value: status
-        });
-        this.setState(newState, () => {
-            // if (status === AlivePushStatus.afterDownload) {
-            // 	Alert.alert(
-            // 		'更新',
-            // 		'更新包已下载好,请重启进行更新!',
-            // 		[
-            // 			{
-            // 				text: '确定', onPress: () => {
-            // 					RNAlivePush.restart();
-            // 				}
-            // 			}
-            // 		],
-            // 		{cancelable: false}
-            // 	);
-            // }
-        });
+
+        switch(status){
+
+            /**开始检查前**/
+            case AlivePushStatus.beforeCheck : {
+                return this.setState({info:"准备中..."})
+            };
+            /**正在检查服务器上是否有当前版本对应的更新包**/
+            case AlivePushStatus.checking : {
+                return this.setState({info:"正在检查版本信息..."})
+            };
+            /**更新检查完成，如果有更新packageInfo中的data字段将包含更新包的信息，如果没有更新，则packageInfo中的data字段为null**/
+            case AlivePushStatus.afterCheck : {
+                if(packageInfo && packageInfo.success){
+                    if(packageInfo.data){
+                        return this.setState({info:"检查完成，需要更新"});
+                    }
+                    else{
+                        return this.setState({info:"检查完成，没有需要更新的包"});
+                    }
+                }
+                else{
+                    return this.setState({info:"检查失败"});
+                }
+            }
+            /**准备下载更新包**/
+            case AlivePushStatus.beforeDownload :
+            /**正在下载更新包到本地**/
+            case AlivePushStatus.downloading : {
+                return this.setState({info:"开始下载安装包..."})
+            };
+            /**更新包下载完成**/
+            case AlivePushStatus.afterDownload : {
+                if(alivePush.restart){
+                    alivePush.restart();
+                }
+                return this.setState({info:"下载完成"})
+            };
+            /**新版本安装成功，并成功启动**/
+            case AlivePushStatus.install : {
+                Alert.alert("新版本启动成功")
+            };
+
+            default:{};
+        }
 
     }
 
+    /**
+    * 更新包下载进度回调方法
+     * @param {number} received - 已经下载的包大小
+     * @param {number} total - 更新包总的大小
+    * */
     alivePushDownloadProgress(received, total) {
+
         this.setState(Object.assign({}, this.state, {
-            progress: received / total
+            info: "下载进度"+(received / total).toFixed(2)+'%'
         }));
     }
 
+
+    /**
+     * 更新出错回调方法
+     * @param {object} err - 已经下载的包大小
+     * */
     alivePushError(err) {
-        debugger
         this.setState(Object.assign({}, this.state, {
-            err: err.toString()
+            info: err.toString()
         }));
     }
+
+
 
     render() {
         return (
-            <View style={{flexDirection: 'column', flex: 1}}>
-                <Image style={{width: 50, height: 50}} source={require('./assets/1.png')}></Image>
-                <Text>当前进度:{this.state.progress}</Text>
-                <Text>错误消息:{this.state.err}</Text>
-                <Text>状态变化:</Text>
-                {this.state.status.map((item, index) => {
-                    return <Text style={{marginLeft: 20}}
-                                 key={index}>{item.text} : {item.value}</Text>
-                })}
+            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                <View style={{marginBottom:200}}>
+                    <Image source={require('./assets/icon.png')}/>
+                    <Text style={{textAlign:'center'}}>{this.state.info}</Text>
+                </View>
             </View>
         );
     }
 }
 
 export default alivePush({
-    deploymentKey: Platform.OS === "android" ? "1229e43400d972b7349c5f7932718f9c" : "b1ca9e0955b8d48ded51549586c066ff",
-    host: "http://172.16.30.236:8080/"
+    deploymentKey: "b858f0319e404d16d5a46fb6dcf229da",
+    host: "http://127.0.0.1:4030/",
+    debug: "development"
 })(App);
