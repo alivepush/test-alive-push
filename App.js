@@ -12,9 +12,14 @@ import {
     Text,
     View,
     Alert,
-    Image
+    Image,
+    Dimensions,
+    Platform,
+    StatusBar
 } from 'react-native';
 import alivePush, {AlivePushStatus} from 'react-native-alive-push'
+
+const windowsSize = Dimensions.get('window');
 
 
 class App extends Component {
@@ -106,11 +111,22 @@ class App extends Component {
 
     render() {
         return (
-            <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                <View style={{marginBottom:200}}>
-                    <Image source={require('./assets/icon.png')}/>
-                    <Text style={{textAlign:'center'}}>{this.state.info}</Text>
+            <View style={{flex:1,backgroundColor:'#ECECEC'}}>
+
+                <StatusBar
+                    backgroundColor="blue"
+                    barStyle="light-content"
+                />
+                <View style={{backgroundColor:'#232e3C',justifyContent:'center',alignItems:'center',height:Platform.OS === "ios"?64:54,width:windowsSize.width}}>
+                    <Text style={{color:'#FFF',fontWeight:'bold',fontSize:20,marginTop:Platform.OS === "ios"?20:0}}>Test Alive Push</Text>
                 </View>
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                    <View style={{marginBottom:200}}>
+                        <Image source={require('./assets/icon.png')}/>
+                        <Text style={{textAlign:'center',color:'#333'}}>{this.state.info}</Text>
+                    </View>
+                </View>
+
             </View>
         );
     }
@@ -118,6 +134,6 @@ class App extends Component {
 
 export default alivePush({
     deploymentKey: "b858f0319e404d16d5a46fb6dcf229da",
-    host: "http://127.0.0.1:4030/",
+    host: "http://47.98.165.10:8080/",
     debug: "development"
 })(App);
