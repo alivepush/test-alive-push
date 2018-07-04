@@ -159,13 +159,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        AlivePushEmitter.addListener(RNAlivePush.EVENT_ALIVEPUSH_BUNDLE_LOADED, (err) => {
-            if (err) {
-                this.appendMessage(`bundle加载完成 # ${err}`);
-            }
-            else {
-                this.appendMessage(`bundle加载完成`);
-            }
+        AlivePushEmitter.addListener(RNAlivePush.EVENT_BUNDLE_LOAD_ERROR, (err) => {
+            this.appendMessage(`bundle加载失败 # ${err}`);
         })
     }
 }
