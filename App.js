@@ -82,7 +82,6 @@ class App extends Component {
             /**更新包下载完成**/
             case AlivePushStatus.afterDownload : {
                 this.appendMessage(`下载完成`);
-                RNAlivePush.reloadBundle();
                 break;
             }
             /**新版本安装成功，并成功启动**/
