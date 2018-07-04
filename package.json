@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
-    "react-native-alive-push": "0.0.9",
+    "react-native-alive-push": "git+https://github.com/alivepush/react-native-alive-push.git",
     "react-native-device-info": "^0.9.9",
     "react-native-fetch-blob": "^0.10.8",
     "react-native-zip-archive": "^1.1.1"

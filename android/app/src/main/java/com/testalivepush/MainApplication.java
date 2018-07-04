@@ -1,8 +1,14 @@
 package com.testalivepush;
 
 import android.app.Application;
+import android.util.Log;
 
+import com.alivepush.BundleManager;
+import com.facebook.react.JSCConfig;
 import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.cxxbridge.JSBundleLoader;
+import com.facebook.react.cxxbridge.JavaScriptExecutor;
 import com.rnziparchive.RNZipArchivePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -13,9 +19,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,15 +40,15 @@ public class MainApplication extends Application implements ReactApplication {
             return RNAlivePushModule.getJSBundleFile(MainApplication.this);
         }
 
-        @Nullable
-        @Override
-        protected String getBundleAssetName() {
-            String bundleAssetName = RNAlivePushModule.getBundleAssetName(MainApplication.this);
-            if (bundleAssetName != null) {
-                return bundleAssetName;
-            }
-            return super.getBundleAssetName();
-        }
+//        @Nullable
+//        @Override
+//        protected String getBundleAssetName() {
+//            String bundleAssetName = RNAlivePushModule.getBundleAssetName(MainApplication.this);
+//            if (bundleAssetName != null) {
+//                return bundleAssetName;
+//            }
+//            return super.getBundleAssetName();
+//        }
 
         @Override
         protected List<ReactPackage> getPackages() {
@@ -66,5 +71,6 @@ public class MainApplication extends Application implements ReactApplication {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
+        BundleManager.init(mReactNativeHost.getReactInstanceManager());
     }
 }

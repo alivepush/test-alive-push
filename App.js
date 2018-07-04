@@ -16,12 +16,17 @@ import {
     Dimensions,
     Platform,
     StatusBar,
-    ScrollView
+    ScrollView,
+    NativeModules,
+    NativeEventEmitter
 } from 'react-native';
 import alivePush, {AlivePushStatus} from 'react-native-alive-push'
 
 const windowsSize = Dimensions.get('window');
 
+const {RNAlivePush} = NativeModules;
+
+const AlivePushEmitter = new NativeEventEmitter(RNAlivePush);
 
 class App extends Component {
     constructor(props) {
@@ -77,6 +82,7 @@ class App extends Component {
             /**更新包下载完成**/
             case AlivePushStatus.afterDownload : {
                 this.appendMessage(`下载完成`);
+                RNAlivePush.reloadBundle();
                 break;
             }
             /**新版本安装成功，并成功启动**/
@@ -136,6 +142,12 @@ class App extends Component {
                         marginTop: Platform.OS === "ios" ? 20 : 0
                     }}>Test Alive Push</Text>
                 </View>
+                <View style={{flexDirection: "row"}}>
+                    <Text style={styles.button} onPress={() => {
+                        this.appendMessage(`重新加载bundle`);
+                        RNAlivePush.reloadBundle();
+                    }}>Reload Bundle</Text>
+                </View>
                 <ScrollView style={{flex: 1}}>
                     {this.state.message.map((m, i) => {
                         return (
@@ -143,9 +155,19 @@ class App extends Component {
                         );
                     })}
                 </ScrollView>
-
             </View>
         );
+    }
+
+    componentDidMount() {
+        AlivePushEmitter.addListener(RNAlivePush.EVENT_ALIVEPUSH_BUNDLE_LOADED, (err) => {
+            if (err) {
+                this.appendMessage(`bundle加载完成 # ${err}`);
+            }
+            else {
+                this.appendMessage(`bundle加载完成`);
+            }
+        })
     }
 }
 
@@ -156,3 +178,11 @@ export default alivePush({
     host: "http://47.98.165.10:8080/",
     debug: true
 })(App);
+
+const styles = StyleSheet.create({
+    button: {
+        padding: 10,
+        backgroundColor: "black",
+        color: "white"
+    }
+})
