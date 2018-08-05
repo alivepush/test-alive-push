@@ -1,9 +1,7 @@
 /**
  * Created by jean.h.ma on 3/14/17.
  */
-/**
- * Created by yzw on 2018/5/31.
- */
+
 
 import React, {Component} from 'react';
 import {
@@ -26,7 +24,7 @@ const windowsSize = Dimensions.get('window');
 
 const {RNAlivePush} = NativeModules;
 
-const AlivePushEmitter = new NativeEventEmitter(RNAlivePush);
+ const AlivePushEmitter = new NativeEventEmitter(RNAlivePush);
 
 class App extends Component {
     constructor(props) {
@@ -60,6 +58,7 @@ class App extends Component {
             case AlivePushStatus.afterCheck : {
                 if (packageInfo && packageInfo.success) {
                     if (packageInfo.data) {
+
                         this.appendMessage(`检查完成,更新包信息:${JSON.stringify(packageInfo.data)}`);
                     }
                     else {
@@ -114,6 +113,7 @@ class App extends Component {
      * @param {object} err - 已经下载的包大小
      * */
     alivePushError(err) {
+        debugger
         this.appendMessage(err.toString());
     }
 
@@ -166,11 +166,9 @@ class App extends Component {
 }
 
 export default alivePush({
-    // deploymentKey: "b858f0319e404d16d5a46fb6dcf229da",
-    // 155290688@qq.com
-    deploymentKey: "dc7df326609f237d6cf9862daf057351",
-    host: "http://47.98.165.10:8080/",
-    debug: true
+    deploymentKey: "ccdd1a41f914afbe16797db8c3a9843a",
+    host: "https://www.alivepush.com/",
+    debug: false
 })(App);
 
 const styles = StyleSheet.create({
