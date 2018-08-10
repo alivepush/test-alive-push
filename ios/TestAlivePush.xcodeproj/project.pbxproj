@@ -219,20 +219,6 @@
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
 		};
-		63FF7B5D20C54BD5000857B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FBCDFB05348344ADB3CB77E0 /* RNAlivePush.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNAlivePush;
-		};
-		63FF7B6020C54BD5000857B6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FAAC5EC99DAB432086704764 /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
-			remoteInfo = RNDeviceInfo;
-		};
 		63FF7B6320C54BD5000857B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0D610FEC73F14051AA9060CB /* RNFetchBlob.xcodeproj */;
@@ -295,8 +281,6 @@
 		916EDF086C3F4F529A842DB6 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		BB1D56C525104EB792B33596 /* libRNAlivePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAlivePush.a; sourceTree = "<group>"; };
 		DC50CD0D9DD3484C99A36A29 /* RNZipArchive.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNZipArchive.xcodeproj; path = "../node_modules/react-native-zip-archive/ios/RNZipArchive.xcodeproj"; sourceTree = "<group>"; };
-		FAAC5EC99DAB432086704764 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
-		FBCDFB05348344ADB3CB77E0 /* RNAlivePush.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAlivePush.xcodeproj; path = "../node_modules/react-native-alive-push/ios/RNAlivePush.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,22 +466,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		63FF7B5420C54BD3000857B6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				63FF7B5E20C54BD5000857B6 /* libRNAlivePush.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		63FF7B5620C54BD4000857B6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				63FF7B6120C54BD5000857B6 /* libRNDeviceInfo.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		63FF7B5820C54BD4000857B6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,8 +505,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				FBCDFB05348344ADB3CB77E0 /* RNAlivePush.xcodeproj */,
-				FAAC5EC99DAB432086704764 /* RNDeviceInfo.xcodeproj */,
 				0D610FEC73F14051AA9060CB /* RNFetchBlob.xcodeproj */,
 				DC50CD0D9DD3484C99A36A29 /* RNZipArchive.xcodeproj */,
 			);
@@ -743,14 +709,6 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
-					ProductGroup = 63FF7B5420C54BD3000857B6 /* Products */;
-					ProjectRef = FBCDFB05348344ADB3CB77E0 /* RNAlivePush.xcodeproj */;
-				},
-				{
-					ProductGroup = 63FF7B5620C54BD4000857B6 /* Products */;
-					ProjectRef = FAAC5EC99DAB432086704764 /* RNDeviceInfo.xcodeproj */;
-				},
-				{
 					ProductGroup = 63FF7B5820C54BD4000857B6 /* Products */;
 					ProjectRef = 0D610FEC73F14051AA9060CB /* RNFetchBlob.xcodeproj */;
 				},
@@ -929,20 +887,6 @@
 			fileType = archive.ar;
 			path = libRCTAnimation.a;
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		63FF7B5E20C54BD5000857B6 /* libRNAlivePush.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNAlivePush.a;
-			remoteRef = 63FF7B5D20C54BD5000857B6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		63FF7B6120C54BD5000857B6 /* libRNDeviceInfo.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDeviceInfo.a;
-			remoteRef = 63FF7B6020C54BD5000857B6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		63FF7B6420C54BD5000857B6 /* libRNFetchBlob.a */ = {
